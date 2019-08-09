@@ -33,6 +33,23 @@ java_dev()
 	apt install -y maven
 }
 
+setup_vim()
+{
+	# vim color
+	mkdir -p ~/.vim/colors && cd ~/.vim/colors
+	wget -O wombat256mod.vim http://www.vim.org/scripts/download_script.php?src_id=13400
+
+	mkdir -p ~/.vim/autoload ~/.vim/bundle
+	curl -so ~/.vim/autoload/pathogen.vim https://raw.githubusercontent.com/tpope/vim-pathogen/master/autoload/pathogen.vim
+
+	cd ~/.vim/bundle
+	git clone git://github.com/Lokaltog/vim-powerline.git
+	git clone https://github.com/kien/ctrlp.vim.git
+
+	curl -so ~/.vimrc https://raw.githubusercontent.com/tamlt2704/dotfiles/master/vimrc
+}
+
+
 for var in "$@"
 do
 	if test "$var" = "update"; then update; fi
@@ -40,4 +57,6 @@ do
 	if test "$var" = "python_basic"; then python_basic; fi
 	if test "$var" = "python_libs"; then python_libs; fi
 	if test "$var" = "zsh_shell"; then zsh_shell; fi
+	if test "$var" = "java_dev"; then java_dev; fi
+	if test "$var" = "setup_vim"; then setup_vim; fi
 done
