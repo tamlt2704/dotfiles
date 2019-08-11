@@ -31,6 +31,8 @@ zsh_shell()
 java_dev()
 {
 	apt install -y maven
+	apt install -y maven openjdk-8-jdk
+    update-alternatives --config java
 }
 
 setup_vim()
